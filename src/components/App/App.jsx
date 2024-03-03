@@ -1,11 +1,13 @@
 
 import { useState, useEffect } from 'react'
 import SearchBar from '../SearchBar/SearchBar'
-import './App.module.css'
+import css from './App.module.css'
 import fetchImages from '../../image-api';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import toast, { Toaster } from 'react-hot-toast';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Loader from '../Loader/Loader';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 
 
 function App() {
@@ -29,7 +31,7 @@ function App() {
       setImages((prevImages) => {
         return [...prevImages, ...data];
       });
-      toast.success("HTTP success!!!!");
+      toast.success("HTTP success!");
     } catch (error) {
       setError(true);
     } finally {
@@ -51,18 +53,13 @@ const handleSearch = (newQuery) => {
     };
 
   return (
-    <div>
+    <div className={css.container}>
       <SearchBar onSubmit={handleSearch} />
+      {isLoading && <Loader />}
       {error && <ErrorMessage />}
-      {images.length > 0 && <ImageGallery items={images} />}
-      {images.length > 0 && !isLoading && (
-        <button onClick={handleLoadMore}>Load more</button>
-      )}
-      {isLoading && (
-        <p>
-          <b>Loading articles...</b>
-        </p>
-      )}
+      {images.length > 0 && <ImageGallery images={images} />}
+      
+      {images.length > 0 && <LoadMoreBtn onLoadMore={handleLoadMore} />}
       <Toaster position="bottom-center" />
     </div>
   )

@@ -1,0 +1,10 @@
+.image {
+    display: block;
+    max-width: 100%;
+    height: auto; 
+}
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
