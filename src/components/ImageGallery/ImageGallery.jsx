@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard"
 import css from './ImageGallery.module.css'
 
-const ImageGallery = ({ images, onImageClick }) => {
+const ImageGallery = ({ images, openModal }) => {
     return (
         <ul className={css.list}>
 	{images.map((image) => {
@@ -9,7 +9,7 @@ const ImageGallery = ({ images, onImageClick }) => {
  <ImageCard 
  key={image.id}
  image={image}
- onClick={() => onImageClick(image)}
+ onClick={() => openModal(image)}
  />
     );
        })}

@@ -9,6 +9,10 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 
+import ImageModule from '../ImageModal/ImageModal';
+
+
+
 
 function App() {
   const [images, setImages] = useState([]);
@@ -16,7 +20,8 @@ function App() {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (searchQuery === "") {
@@ -52,17 +57,38 @@ const handleSearch = (newQuery) => {
       setPage(page + 1);
     };
 
+    function openModal(image) {
+      setSelectedImage(image);
+      setIsOpen(true);
+    }
+  
+  
+    function closeModal() {
+      setIsOpen(false);
+    }
+
   return (
     <div className={css.container}>
       <SearchBar onSubmit={handleSearch} />
       {isLoading && <Loader />}
       {error && <ErrorMessage />}
-      {images.length > 0 && <ImageGallery images={images} />}
+      {images.length > 0 && <ImageGallery images={images} openModal={openModal}/>}
       
       {images.length > 0 && <LoadMoreBtn onLoadMore={handleLoadMore} />}
       <Toaster position="bottom-center" />
+      <button onClick={openModal}>Open Modal</button>
+      {selectedImage && (
+      <ImageModule
+        isOpen={modalIsOpen}
+        
+        onClose={closeModal}
+       image={selectedImage}
+      />
+        
+      )}
     </div>
-  )
+  );
 }
+
 
 export default App
