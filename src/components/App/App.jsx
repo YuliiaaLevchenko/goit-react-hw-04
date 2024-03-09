@@ -8,8 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
-
-import ImageModule from '../ImageModal/ImageModal';
+import ImageModal from '../ImageModal/ImageModal';
 
 
 
@@ -78,7 +77,7 @@ const handleSearch = (newQuery) => {
       <Toaster position="bottom-center" />
       <button onClick={openModal}>Open Modal</button>
       {selectedImage && (
-      <ImageModule
+      <ImageModal
         isOpen={modalIsOpen}
         
         onClose={closeModal}

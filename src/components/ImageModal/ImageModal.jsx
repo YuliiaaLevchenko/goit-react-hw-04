@@ -3,7 +3,7 @@ import css from './ImageModal.module.css'
 
 Modal.setAppElement("#root");
 
-const ImageModule = ({ image, isOpen, onClose }) => {
+const ImageModal = ({ image, isOpen, onClose }) => {
     return (
     <Modal
       className={css.modal}
@@ -12,7 +12,7 @@ const ImageModule = ({ image, isOpen, onClose }) => {
       contentLabel="Image Modal"
     >
       <div className={css.wrapper}>
-        {image && (
+        {image && image.urls && (
           <img
             className={css.image}
             src={image.urls.regular}
@@ -21,9 +21,7 @@ const ImageModule = ({ image, isOpen, onClose }) => {
           />
         )}
         <p className={css.description}>{image.description}</p>
-        <p className={css.text}>
-          Author: <span className={css.span}>{image.user.name}</span>
-        </p>
+        
         <p className={css.text}>
           Likes: <span className={css.span}>{image.likes}</span>
         </p>
@@ -33,4 +31,4 @@ const ImageModule = ({ image, isOpen, onClose }) => {
 }
        
 
-export default ImageModule
+export default ImageModal
