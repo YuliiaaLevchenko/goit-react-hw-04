@@ -1,6 +1,7 @@
 import css from './SearchBar.module.css'
 import { useRef } from 'react';
 import { FaSearch } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 
 const SearchBar = ({onSubmit}) => {
     const inputRef = useRef(null);
@@ -8,15 +9,18 @@ const SearchBar = ({onSubmit}) => {
 const handleSubmit = (e) => {
     e.preventDefault();
     const query = inputRef.current.value;
+if (!query.trim()) {
+    toast.error('Please enter a search query.');
+    
+    return;
+}
     onSubmit(query);
     inputRef.current.value = '';
-}
-    
+}  
     return (
         <header className={css.header}>
   <form onSubmit={handleSubmit} className={css.form}>
   <div>
-  
     <input className={css.input}
       type="text"
       autoComplete="off"
@@ -25,11 +29,14 @@ const handleSubmit = (e) => {
       ref={inputRef}
       required
     />
-<FaSearch className={css.searchIcon} size='14px'/>
+<FaSearch className={css.searchIcon} size='14px'
+onClick={handleSubmit}
+/>
    </div>
    <button className={css.button} type="submit">Search</button>
    
   </form>
+  
 </header>
 
     )

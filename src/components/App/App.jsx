@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import css from './App.module.css'
 import fetchImages from '../../image-api';
 import ImageGallery from '../ImageGallery/ImageGallery';
-import toast, { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
