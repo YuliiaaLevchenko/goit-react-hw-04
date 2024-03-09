@@ -11,17 +11,16 @@ const ImageModal = ({ image, isOpen, onClose }) => {
       onRequestClose={onClose}
       contentLabel="Image Modal"
     >
-      <div className={css.wrapper}>
+      <div className={css.wrapper}
+      onClick={onClose}>
         {image && image.urls && (
           <img
             className={css.image}
             src={image.urls.regular}
             alt={image.description}
-            onClick={onClose}
           />
         )}
-        <p className={css.description}>{image.description}</p>
-        
+        <p className={css.description}>{image.description}</p> 
         <p className={css.text}>
           Likes: <span className={css.span}>{image.likes}</span>
         </p>

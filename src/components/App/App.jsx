@@ -11,8 +11,6 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 
 
-
-
 function App() {
   const [images, setImages] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,7 +59,6 @@ const handleSearch = (newQuery) => {
       setIsOpen(true);
     }
   
-  
     function closeModal() {
       setIsOpen(false);
     }
@@ -72,10 +69,9 @@ const handleSearch = (newQuery) => {
       {isLoading && <Loader />}
       {error && <ErrorMessage />}
       {images.length > 0 && <ImageGallery images={images} openModal={openModal}/>}
-      
       {images.length > 0 && <LoadMoreBtn onLoadMore={handleLoadMore} />}
       <Toaster position="bottom-center" />
-      <button onClick={openModal}>Open Modal</button>
+      
       {selectedImage && (
       <ImageModal
         isOpen={modalIsOpen}
